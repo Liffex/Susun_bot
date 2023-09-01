@@ -48,5 +48,4 @@ if __name__ == '__main__':
         await tree.sync()
 
 
-    # client.run("MTEzMzc3NjM4MTg2NDU3OTA4Mg.Gumz-O.Uspf3tsJvkbFD7Vb4jhd8E0-69sSv1bOPygTzY")
     client.run(os.getenv("APIKEY"))
