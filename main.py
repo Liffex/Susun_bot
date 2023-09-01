@@ -1,17 +1,10 @@
 import discord
 import logging
 
-import mcstatus
-
 from SusunClient import SusunClient
 from mcstatus import JavaServer
 
 if __name__ == '__main__':
-    logger = logging.getLogger('discord')
-    logger.setLevel(logging.INFO)
-    dt_fmt = "%Y-%m-%d %H:%M:%S"
-    formatter = logging.Formatter("")
-
     intents = discord.Intents.default()
     intents.message_content = True
 
