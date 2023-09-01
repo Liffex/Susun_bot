@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     @tree.command(name="online", description="Check online")
     async def check_online(interaction: discord.Interaction):
-        server = JavaServer.lookup("212.12.14.7:25565")
+        server = JavaServer.lookup(os.getenv("SERVER_HOST"))
         try:
             await interaction.response.defer()
             server.status()
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     @tree.command(name="ip", description="Check online")
     async def ip_command(interaction: discord.Interaction):
-        await interaction.response.send_message("212.12.14.7:25505")
+        await interaction.response.send_message(os.getenv("SERVER_HOST"))
 
 
     @client.event
