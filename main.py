@@ -32,8 +32,7 @@ if __name__ == '__main__':
             await interaction.response.defer()
             server.status()
             msg = "Сервер онлайн!"
-        except TimeoutError:
-            print("ХУЙ")
+        except (TimeoutError, ConnectionRefusedError):
             msg = "Сервер оффлайн((("
         await interaction.followup.send(msg)
 
