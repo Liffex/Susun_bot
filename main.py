@@ -4,7 +4,6 @@ import os
 from SusunClient import SusunClient
 from discord import app_commands
 from dotenv import load_dotenv
-import MinecraftClient
 
 dotenv_path = os.path.join('.env')
 if os.path.exists(dotenv_path):
