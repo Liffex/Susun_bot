@@ -1,11 +1,10 @@
-import logging
+import os
 
 import discord
 from discord import app_commands
+from dotenv import load_dotenv
 from mcstatus import JavaServer
 from mcstatus.status_response import JavaStatusResponse
-
-from main import server_host, api_token
 
 
 def get_server_status(host):
@@ -21,10 +20,18 @@ def get_server_status(host):
 class MinecraftClient(discord.Client):
     async def on_ready(self):
         print(f"MinecraftClient is UP as {self.user}")
+        await minecraftCommandTree.sync()
 
     async def on_connect(self):
         print(f"MinecraftClient successfully connected to server")
 
+
+dotenv_path = os.path.join('.env')
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
+
+server_host = os.getenv("SERVER_HOST")
+api_token = os.getenv("APIKEY")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -76,11 +83,5 @@ async def check_online(interaction: discord.Interaction):
 @minecraftCommandTree.command(name="ip", description="Адрес сервера")
 async def ip_command(interaction: discord.Interaction):
     await interaction.response.send_message(f"Подключиться к серверу можно по адресу {server_host}")
-
-
-@minecraftClient.event
-async def on_ready():
-    await minecraftCommandTree.sync()
-
 
 minecraftClient.run(api_token)
