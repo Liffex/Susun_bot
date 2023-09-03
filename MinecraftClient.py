@@ -56,32 +56,60 @@ async def players_command(interaction: discord.Interaction):
     else:
         await interaction.followup.send('Сервер оффлайн')
 
+#
+# @minecraftCommandTree.command(name="online", description="Количество игроков онлайн")
+# async def online_command(interaction: discord.Interaction):
+#     await interaction.response.defer()
+#
+#     server_status = get_server_status(server_host)
+#     if isinstance(server_status, JavaStatusResponse):
+#         await interaction.followup.send(
+#             f"Сейчас на сервере {server_status.players.online} из {server_status.players.max} игроков")
+#     else:
+#         await interaction.followup.send('Сервер оффлайн(')
+#
+#
+# @minecraftCommandTree.command(name="server", description="Статус сервера")
+# async def server_command(interaction: discord.Interaction):
+#     await interaction.response.defer()
+#
+#     server_status = get_server_status(server_host)
+#     if isinstance(server_status, JavaStatusResponse):
+#         await interaction.followup.send('Сервер онлайн')
+#     else:
+#         await interaction.followup.send('Сервер оффлайн')
+#
+#
+# @minecraftCommandTree.command(name="ip", description="Адрес сервера")
+# async def ip_command(interaction: discord.Interaction):
+#     await interaction.response.send_message(f"Подключиться к серверу можно по адресу {server_host}")
 
-@minecraftCommandTree.command(name="online", description="Количество игроков онлайн")
-async def online_command(interaction: discord.Interaction):
+
+@minecraftCommandTree.command(name="info", description="Инфо")
+async def info_command(interaction: discord.Interaction):
     await interaction.response.defer()
 
     server_status = get_server_status(server_host)
+
+    embed = discord.Embed(
+        title="Сервер Minecraft",
+        description="Сервера майнкрафт основанный на cборке FTB One",
+        color=discord.Color.yellow(),
+    )
+    embed.add_field(name="Версия майнкрафт", value="1.19.2")
+    embed.add_field(name="Версия клиента", value="2.7.0")
+    embed.add_field(name="Адрес", value=server_host, inline=False)
+
     if isinstance(server_status, JavaStatusResponse):
-        await interaction.followup.send(
-            f"Сейчас на сервере {server_status.players.online} из {server_status.players.max} игроков")
+        embed.add_field(name="Cтатус", value="Онлайн")
+        embed.add_field(name="Онлайн", value=f"{server_status.players.online} из {server_status.players.max}")
     else:
-        await interaction.followup.send('Сервер оффлайн(')
+        embed.add_field(name="Cтатус", value="Оффлайн")
 
+    await interaction.followup.send(embed=embed)
 
-@minecraftCommandTree.command(name="server", description="Статус сервера")
-async def server_command(interaction: discord.Interaction):
-    await interaction.response.defer()
-
-    server_status = get_server_status(server_host)
-    if isinstance(server_status, JavaStatusResponse):
-        await interaction.followup.send('Сервер онлайн')
-    else:
-        await interaction.followup.send('Сервер оффлайн')
-
-
-@minecraftCommandTree.command(name="ip", description="Адрес сервера")
-async def ip_command(interaction: discord.Interaction):
-    await interaction.response.send_message(f"Подключиться к серверу можно по адресу {server_host}")
+# @minecraftCommandTree.command(name="ip", description="Адрес сервера")
+# async def ip_command(interaction: discord.Interaction):
+#     await interaction.response.send_message(f"Подключиться к серверу можно по адресу {server_host}")
 
 minecraftClient.run(api_token)
