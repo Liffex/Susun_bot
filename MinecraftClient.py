@@ -40,7 +40,7 @@ minecraftCommandTree = app_commands.CommandTree(minecraftClient)
 
 
 @minecraftCommandTree.command(name="players", description="Список игроков онлайн")
-async def players(interaction: discord.Interaction):
+async def players_command(interaction: discord.Interaction):
     await interaction.response.defer()
 
     server_status = get_server_status(server_host)
@@ -58,7 +58,7 @@ async def players(interaction: discord.Interaction):
 
 
 @minecraftCommandTree.command(name="online", description="Количество игроков онлайн")
-async def players(interaction: discord.Interaction):
+async def online_command(interaction: discord.Interaction):
     await interaction.response.defer()
 
     server_status = get_server_status(server_host)
@@ -70,7 +70,7 @@ async def players(interaction: discord.Interaction):
 
 
 @minecraftCommandTree.command(name="server", description="Статус сервера")
-async def check_online(interaction: discord.Interaction):
+async def server_command(interaction: discord.Interaction):
     await interaction.response.defer()
 
     server_status = get_server_status(server_host)
