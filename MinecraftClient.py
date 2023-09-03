@@ -85,7 +85,7 @@ async def players_command(interaction: discord.Interaction):
 #     await interaction.response.send_message(f"Подключиться к серверу можно по адресу {server_host}")
 
 
-@minecraftCommandTree.command(name="info", description="Инфо")
+@minecraftCommandTree.command(name="info", description="Информация про сервер")
 async def info_command(interaction: discord.Interaction):
     await interaction.response.defer()
 
