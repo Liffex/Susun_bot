@@ -93,11 +93,11 @@ async def info_command(interaction: discord.Interaction):
 
     embed = discord.Embed(
         title="Сервер Minecraft",
-        description="Сервера майнкрафт основанный на cборке FTB One",
+        description="Сервера майнкрафт основанный на cборке All the mods 8",
         color=discord.Color.yellow(),
     )
     embed.add_field(name="Версия майнкрафт", value="1.19.2")
-    embed.add_field(name="Версия клиента", value="2.7.0")
+    embed.add_field(name="Версия клиента", value="1.0.25")
     embed.add_field(name="Адрес", value=server_host, inline=False)
 
     if isinstance(server_status, JavaStatusResponse):
